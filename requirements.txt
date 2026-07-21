@@ -9,6 +9,9 @@ cycler==0.12.1
 distlib==0.4.0
 dj-database-url==3.1.2
 Django==6.0.4
+django-allauth==65.18.0
+django-ckeditor==6.7.3
+django-js-asset==4.0.1
 dnspython==2.8.0
 eventlet==0.41.0
 filelock==3.29.0
