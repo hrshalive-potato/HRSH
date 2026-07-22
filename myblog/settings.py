@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
 
- 
+    'cloudinary_storage',
     'cloudinary',
 ]
 
@@ -164,7 +164,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://whitenoise.readthedocs.io/
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
