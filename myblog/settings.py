@@ -166,6 +166,7 @@ STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
+
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
@@ -176,7 +177,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # CKEditor — folder inside MEDIA_ROOT where inline post images are saved
-CKEDITOR_UPLOAD_PATH = 'post_images/'
+CKEDITOR_UPLOAD_PATH = 'post_images'
 # Allow browsing previously uploaded images in the editor
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
