@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     # Rich text editor with image upload support
     'ckeditor',
     'ckeditor_uploader',
+
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +63,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
 
@@ -170,3 +172,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CKEDITOR_UPLOAD_PATH = 'post_images/'
 # Allow browsing previously uploaded images in the editor
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+# Use Cloudinary to store uploaded media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
