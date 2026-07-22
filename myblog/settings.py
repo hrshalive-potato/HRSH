@@ -14,11 +14,12 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 
-
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import cloudinary_storage
+
+# Import the CloudinaryImage and CloudinaryVideo methods for the simplified syntax used in this guide
+from cloudinary import CloudinaryImage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,7 +57,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
 
-    'cloudinary_storage',
+ 
     'cloudinary',
 ]
 
@@ -163,7 +164,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://whitenoise.readthedocs.io/
 STORAGES = {
     "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -179,10 +180,3 @@ CKEDITOR_UPLOAD_PATH = 'post_images/'
 # Allow browsing previously uploaded images in the editor
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
-# Use Cloudinary to store uploaded media files (Django 5+ uses the STORAGES dict above)
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('cld_name', default=''),
-    'API_KEY': config('cld_api_key', default=''),
-    'API_SECRET': config('cld_api_secret', default=''),
-}
