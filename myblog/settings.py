@@ -163,7 +163,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://whitenoise.readthedocs.io/
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -179,11 +179,10 @@ CKEDITOR_UPLOAD_PATH = 'post_images/'
 # Allow browsing previously uploaded images in the editor
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
-# Use Cloudinary to store uploaded media files
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Use Cloudinary to store uploaded media files (Django 5+ uses the STORAGES dict above)
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('cld_name'),
-    'API_KEY': config('cld_api_key'),
-    'API_SECRET': config('cld_api_secret'),
+    'CLOUD_NAME': config('cld_name', default=''),
+    'API_KEY': config('cld_api_key', default=''),
+    'API_SECRET': config('cld_api_secret', default=''),
 }
