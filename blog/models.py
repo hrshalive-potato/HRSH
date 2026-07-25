@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Post(models.Model):
@@ -9,7 +9,7 @@ class Post(models.Model):
     title       = models.CharField(max_length=200)
     slug        = models.SlugField(unique=True, blank=True)  # URL-friendly title
     author      = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    content     = RichTextUploadingField()                   # Rich text with inline image uploads
+    content     = CKEditor5Field('Content', config_name='extends')
     cover_image = models.ImageField(upload_to='covers/', blank=True, null=True)
     created_at  = models.DateTimeField(auto_now_add=True)
     updated_at  = models.DateTimeField(auto_now=True)
