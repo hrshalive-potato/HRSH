@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 
-from .models import Post,Comment
+from .models import Post, Comment, Photo
 
 # Post List view
 def post_list(request):
@@ -23,3 +23,8 @@ def post_detail(request,slug):
         else:
             messages.error(request,'Comment cannot be empty!')
     return render(request,'blog/post_detail.html',{'post':post,'comments':comments})
+
+def photos(request):
+    photos = Photo.objects.all().order_by('-uploaded_at')
+    return render(request,'blog/photos.html',{'photos':photos})
+

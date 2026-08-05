@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Comment
+from .models import Post, Comment, Photo
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -15,3 +15,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('author','post','created_at')
     list_filter = ('created_at',)
     search_fields = ('author__username','body')
+
+@admin.register(Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ('caption', 'uploaded_at')

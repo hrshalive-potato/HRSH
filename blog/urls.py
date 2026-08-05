@@ -5,4 +5,5 @@ urlpatterns = [
     # We will add blog URLs here later!
     path('',views.post_list,name='post_list'),
     path('post/<slug:slug>',views.post_detail,name='post_details'),
+    path('photos',views.photos,name='photos'),
 ]
