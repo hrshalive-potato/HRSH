@@ -14,6 +14,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="{% url 'post_list' %}" class="nav-brand">📝 MyBlog</a>
+        <a href="{% url 'photos' %}" class="nav-brand">📷Photos</a>
         <div class="nav-links">
             {% if user.is_authenticated %}
             <span>👤 {{ user.first_name }}</span>

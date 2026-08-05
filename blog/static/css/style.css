@@ -40,7 +40,8 @@ body {
     text-transform: uppercase;
 }
 
-.nav-links a, .nav-links span {
+.nav-links a,
+.nav-links span {
     margin-left: 1.5rem;
     font-weight: 600;
     color: var(--text);

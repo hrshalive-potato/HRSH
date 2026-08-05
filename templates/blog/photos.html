@@ -2,35 +2,45 @@
 
 {% block content %}
 <style>
+    /* Override the main container just for this page so it's not restricted to 720px */
+    main.container {
+        max-width: 1200px !important;
+    }
+
     .photo-gallery {
         column-count: 3;
         column-gap: 15px;
     }
+
     .photo {
         break-inside: avoid;
         margin-bottom: 15px;
+        border-radius: 8px;
         overflow: hidden;
-        border-radius: 8px; /* Optional: makes it look a bit nicer */
     }
+
     .photo img {
         width: 100%;
+        height: auto;
+        /* This explicitly forces the image to keep its natural shape */
         display: block;
         transition: transform 0.3s ease;
     }
+
     .photo:hover img {
-        transform: scale(1.2); /* 20% bigger */
+        transform: scale(1.05);
+        /* Gentle Pinterest-style zoom */
     }
 </style>
 
 <h1>Photos</h1>
 <div class="photo-gallery">
-{% for photo in photos %}
-<div class="photo">
-    <img src="{{photo.image.url}}" alt="{{photo.caption}}">
-    <p>{{photo.caption}}</p>
-</div>
-{% empty %}
-<h2>No photos found</h2>
-{% endfor %}
+    {% for photo in photos %}
+    <div class="photo">
+        <img src="{{photo.image.url}}" alt="{{photo.caption}}">
+    </div>
+    {% empty %}
+    <h2>No photos found</h2>
+    {% endfor %}
 </div>
 {% endblock %}
