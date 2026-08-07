@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 
-from .models import Post, Comment, Photo
+from .models import Post, Comment, Photo ,Videos
 
 # Post List view
 def post_list(request):
@@ -28,3 +28,6 @@ def photos(request):
     photos = Photo.objects.all().order_by('-uploaded_at')
     return render(request,'blog/photos.html',{'photos':photos})
 
+def videos(request):
+    video = Videos.objects.all().order_by('-uploaded_at')
+    return render(request,'blog/videos.html',{'videos':video})

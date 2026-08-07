@@ -42,4 +42,11 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.caption
-    
+
+class Videos(models.Model):
+    video = models.FileField(upload_to = 'videos/')
+    title = models.TextField(max_length=100)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

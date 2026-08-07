@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Videos</h1>
+{% for video in videos%}
+<video width="640" height="360" controls>
+    <source src="{{ video.video.url }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<p>{{video.title}}</p>
+{% endfor %}
+
+{% endblock %}

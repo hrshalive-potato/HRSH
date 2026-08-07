@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Photo
+from .models import Post, Comment, Photo,Videos
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -19,3 +19,7 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('caption', 'uploaded_at')
+
+@admin.register(Videos)
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('title','uploaded_at')

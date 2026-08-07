@@ -6,4 +6,5 @@ urlpatterns = [
     path('',views.post_list,name='post_list'),
     path('post/<slug:slug>',views.post_detail,name='post_details'),
     path('photos',views.photos,name='photos'),
+    path('videos',views.videos,name='videos'),
 ]
