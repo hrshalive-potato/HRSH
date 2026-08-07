@@ -15,7 +15,7 @@
     <nav class="navbar">
         <a href="{% url 'post_list' %}" class="nav-brand">📝 MyBlog</a>
         <a href="{% url 'photos' %}" class="nav-brand">📷Photos</a>
-        list_display = ('title','uploaded_at')
+
         <a href="{% url 'videos' %}" class="nav-brand">🎬Videos</a>
         <div class="nav-links">
             {% if user.is_authenticated %}

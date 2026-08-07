@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
+from cloudinary_storage.storage import VideoMediaCloudinaryStorage
 
 
 class Post(models.Model):
@@ -44,7 +45,7 @@ class Photo(models.Model):
         return self.caption
 
 class Videos(models.Model):
-    video = models.FileField(upload_to = 'videos/')
+    video = models.FileField(upload_to='videos/', storage=VideoMediaCloudinaryStorage())
     title = models.TextField(max_length=100)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
