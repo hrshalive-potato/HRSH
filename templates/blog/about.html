@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}HRSH{% endblock %}
+
+{% block content %}
+<div class="manga-panel hero-profile" style="position: relative;">
+  <span class="annotation annotation-arrow" style="top: -30px; left: -20px; transform: rotate(-15deg);">That's me!</span>
+  <h1>About Me</h1>
+  
+  <div class="hero-image-frame">
+    <img src="{% static 'images/ben_tennyson.jpg' %}" alt="Ben 10" style="max-width: 100%; height: auto;">
+  </div>
+
+  <p><strong>QUIRK: Omnitrix Master.</strong> Can transform into various alien life forms to combat intergalactic threats. High threat level to villains.</p>
+  <p><strong>STATUS:</strong> Active. Currently patrolling the Django development environment and smashing bugs with PLUS ULTRA strength.</p>
+</div>
+{% endblock %}

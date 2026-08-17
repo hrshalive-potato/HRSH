@@ -1,34 +1,50 @@
 {% extends 'blog/base.html' %}
 
-{% block title %}{{post.title}}{% endblock %}
+{% block title %}HRSH{% endblock %}
 {% block content %}
-<div class="post">
-    <h2>{{post.title}}</h2>
+<div class="manga-panel">
+    <h1 style="font-size: 3rem; margin-bottom: 20px;">{{post.title}}</h1>
+    <p style="font-weight: bold; margin-bottom: 20px; color: var(--ha-red);">DATE: {{post.created_at|date:"F d, Y"}}</p>
+    
     {% if post.cover_image %}
-    <img src="{{post.cover_image.url}}" alt="{{post.title}}" class="cover-image">
+    <div style="border: var(--thick-border); margin-bottom: 30px; padding: 10px; background-color: var(--ha-yellow);">
+        <img src="{{post.cover_image.url}}" alt="{{post.title}}" style="width: 100%; display: block; border: 3px solid var(--ha-black);">
+    </div>
     {% endif %}
-    <div class="post-body">
+    
+    <div style="font-size: 1.2rem; line-height: 1.8;">
         {{post.content|safe}}
     </div>
-    <p>{{post.created_at|date:"F d, Y"}}</p>
 </div>
+
+<h2 style="font-size: 2rem; margin-top: 40px; margin-bottom: 20px;">Comments</h2>
+
 {% if user.is_authenticated %}
-<div class="comment-form">
-    <form method="POST">
+<div class="manga-panel" style="background-color: var(--ha-blue); color: var(--ha-white); position: relative;">
+    <span class="annotation annotation-arrow" style="top: -35px; right: 10px; transform: rotate(5deg); color: var(--ha-yellow);">Your turn!</span>
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
         {% csrf_token %}
-        <textarea name="body" placeholder="Write a comment..."></textarea>
-        <button type="submit">Post Comment</button>
+        <textarea name="body" placeholder="Write a comment..." style="padding: 15px; border: var(--thick-border); font-family: var(--font-body); font-size: 1rem; resize: vertical; min-height: 100px;"></textarea>
+        <button type="submit" class="btn-action" style="align-self: flex-start; background-color: var(--ha-yellow);">Submit</button>
     </form>
 </div>
 {% else %}
-<p>You must be logged in to comment.</p>
-<p><a href="{% url 'account_login' %}">Sign In</a> to comment.</p>
+<div class="manga-panel" style="background-color: var(--ha-red); color: var(--ha-white);">
+    <p style="font-size: 1.2rem;">You must be logged in to comment.</p>
+    <p style="margin-top: 10px;"><a href="{% url 'account_login' %}" class="btn-action" style="background-color: var(--ha-yellow);">Sign In</a></p>
+</div>
 {% endif %}
-{% for comment in comments %}
-<p>{{comment.author.first_name}}:
-    {{comment.body}}
-</p>
-{% empty %}
-<p>No comments yet.</p>
-{% endfor %}
+
+<div style="display: flex; flex-direction: column; gap: 20px; margin-top: 30px;">
+    {% for comment in comments %}
+    <div class="manga-panel" style="padding: 20px;">
+        <h3 style="color: var(--ha-blue); margin-bottom: 10px;">AGENT {{comment.author.first_name}}:</h3>
+        <p style="font-size: 1.1rem;">{{comment.body}}</p>
+    </div>
+    {% empty %}
+    <div class="manga-panel" style="background-color: #ddd;">
+        <p style="font-weight: bold;">No intel reports yet. Be the first!</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

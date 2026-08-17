@@ -4,20 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Blog{% endblock %}</title>
+    <title>{% block title %}HRSH{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Favicon (Browser Tab Icon) -->
+    <link rel="icon" type="image/jpeg" href="{% static 'images/ben.jpg' %}">
+
+    <!-- Google Fonts for Comic Book & Handwritten Styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Caveat:wght@700&family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="{% url 'post_list' %}" class="nav-brand">📝 MyBlog</a>
-        <a href="{% url 'photos' %}" class="nav-brand">📷Photos</a>
-
-        <a href="{% url 'videos' %}" class="nav-brand">🎬Videos</a>
-        <div class="nav-links">
+    <!-- Navigation Bar (Action Banner) -->
+    <nav class="ha-navbar">
+        <div class="ha-nav-links">
+            <a href="{% url 'about' %}">🏠 About Me</a>
+            <a href="{% url 'post_list' %}">📝 Blog Posts</a>
+            <a href="{% url 'photos' %}">📷 Photos</a>
+            <a href="{% url 'videos' %}">🎬 Videos</a>
+        </div>
+        <div class="ha-nav-user">
             {% if user.is_authenticated %}
             <span>👤 {{ user.first_name }}</span>
             <a href="{% url 'account_logout' %}">Logout</a>
@@ -29,20 +40,22 @@
 
     <!-- Flash Messages -->
     {% if messages %}
-    <div class="messages">
+    <div class="ha-container">
         {% for message in messages %}
-        <div class="message {{ message.tags }}">{{ message }}</div>
+        <div class="manga-panel" style="background-color: var(--ha-yellow); padding: 10px;">
+            <strong>UPDATE:</strong> {{ message }}
+        </div>
         {% endfor %}
     </div>
     {% endif %}
 
-    <!-- Main Content -->
-    <main class="container">
+    <!-- Main Content Container -->
+    <main class="ha-container">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>Built with Django ❤️</p>
+    <footer class="ha-footer">
+        <p>Built with PLUS ULTRA Energy & Django 💥</p>
     </footer>
 
     <script src="{% static 'js/main.js' %}"></script>

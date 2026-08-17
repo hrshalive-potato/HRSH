@@ -1,13 +1,26 @@
 {% extends 'blog/base.html' %}
+{% block title %}HRSH{% endblock %}
 
 {% block content %}
-<h1>Videos</h1>
-{% for video in videos%}
-<video width="640" height="360" controls>
-    <source src="{{ video.video.url }}" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-<p>{{video.title}}</p>
-{% endfor %}
+<div style="position: relative;">
+    <h1 style="text-align: center; margin-bottom: 40px; font-size: 3rem; color: var(--ha-red); text-shadow: 2px 2px 0 var(--ha-black);">Videos</h1>
+    <span class="annotation annotation-arrow" style="top: -20px; left: 20%; transform: rotate(-20deg); color: var(--ha-blue);">Must watch!</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
+    {% for video in videos%}
+    <div class="manga-panel" style="width: 100%; max-width: 800px; padding: 20px; background-color: var(--ha-black);">
+        <video width="100%" controls style="border: 4px solid var(--ha-white);">
+            <source src="{{ video.video.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p style="color: var(--ha-yellow); font-family: var(--font-hero); font-size: 1.5rem; margin-top: 15px; text-transform: uppercase;">{{video.title}}</p>
+    </div>
+    {% empty %}
+    <div class="manga-panel">
+        <h2>No videos found.</h2>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

@@ -3,6 +3,10 @@ from django.contrib import messages
 
 from .models import Post, Comment, Photo ,Videos
 
+# About Me view
+def about(request):
+    return render(request, 'blog/about.html')
+
 # Post List view
 def post_list(request):
     posts = Post.objects.filter(published=True).order_by('-created_at')

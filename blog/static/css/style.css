@@ -1,219 +1,266 @@
+/* =========================================================================
+   PLUS ULTRA! - My Hero Academia Inspired Design System
+   ========================================================================= */
+
+/* --- 1. Variables & Palette --- */
 :root {
-    --bg: #ffffff;
-    --text: #000000;
-    --text-muted: #666666;
-    --link: #0000ee;
-    --border: #000000;
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+  --ha-yellow: #FFD700;       /* All Might Yellow */
+  --ha-red: #E74C3C;          /* Heroic Red */
+  --ha-green: #2ECC71;        /* Deku Green */
+  --ha-blue: #3498DB;         /* Iida/Uraraka Blue */
+  --ha-black: #1A1A1A;        /* Dark Manga Ink */
+  --ha-white: #FFFFFF;        /* Paper White */
+  
+  --font-action: 'Bangers', cursive;
+  --font-hero: 'Oswald', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  
+  --thick-border: 4px solid var(--ha-black);
+  --hard-shadow: 6px 6px 0px var(--ha-black);
+  --hard-shadow-hover: 10px 10px 0px var(--ha-black);
 }
 
+/* --- 2. Global Resets & Body --- */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  background-color: var(--ha-yellow);
+  color: var(--ha-black);
+  /* Comic Halftone Dot Background Pattern */
+  background-image: radial-gradient(var(--ha-black) 10%, transparent 11%);
+  background-size: 20px 20px;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 3rem;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-hero);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.nav-brand {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.05em;
-    text-transform: uppercase;
+a {
+  text-decoration: none;
+  color: var(--ha-black);
+  font-weight: bold;
+  transition: all 0.2s ease;
 }
 
-.nav-links a,
-.nav-links span {
-    margin-left: 1.5rem;
-    font-weight: 600;
-    color: var(--text);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
+/* --- 3. The Action Banner (Navbar) --- */
+.ha-navbar {
+  background-color: var(--ha-black);
+  color: var(--ha-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom: 6px solid var(--ha-red);
+  transform: skewY(-1deg);
+  transform-origin: top left;
+  margin-bottom: 40px;
+  box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
-.nav-links a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+/* Undo skew for text inside navbar */
+.ha-navbar > * {
+  transform: skewY(1deg);
 }
 
-/* Main Container */
-.container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+.ha-nav-links {
+  display: flex;
+  gap: 20px;
 }
 
-/* Posts */
-.post {
-    margin-bottom: 4rem;
-    padding-bottom: 3rem;
-    border-bottom: 2px solid var(--border);
+.ha-nav-links a {
+  color: var(--ha-white);
+  font-family: var(--font-hero);
+  font-size: 1.2rem;
+  padding: 5px 15px;
+  background-color: var(--ha-red);
+  border: 3px solid var(--ha-black);
+  transform: skewX(-15deg);
+  display: inline-block;
 }
 
-.post:last-child {
-    border-bottom: none;
+.ha-nav-links a:hover {
+  background-color: var(--ha-yellow);
+  color: var(--ha-black);
+  transform: skewX(-15deg) scale(1.1);
 }
 
-.post h2 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 2.25rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+.ha-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: var(--font-hero);
+  color: var(--ha-white);
 }
 
-.post h2 a {
-    color: var(--text);
-    text-decoration: none;
+.ha-nav-user a {
+  background-color: var(--ha-blue);
+  color: var(--ha-white);
+  padding: 5px 15px;
+  border: 3px solid var(--ha-black);
+  transform: skewX(-15deg);
 }
 
-.post h2 a:hover {
-    text-decoration: underline;
-    text-underline-offset: 6px;
+.ha-nav-user a:hover {
+  background-color: var(--ha-yellow);
+  color: var(--ha-black);
 }
 
-.post-meta {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+/* --- 4. Main Container & Manga Panels --- */
+.ha-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  flex: 1;
+  padding: 20px;
 }
 
-.cover-image {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    display: block;
-    margin: 2rem 0;
-    border: 2px solid var(--border);
+/* The core Manga Panel / Hero Card style */
+.manga-panel {
+  background-color: var(--ha-white);
+  border: var(--thick-border);
+  box-shadow: var(--hard-shadow);
+  padding: 30px;
+  margin-bottom: 40px;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-.post-body {
-    font-size: 1.1rem;
-    color: #222;
+.manga-panel:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--hard-shadow-hover);
 }
 
-.post-body img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 2rem auto;
-    border: 2px solid var(--border);
+/* "Top Secret" File Tape effect on corners */
+.manga-panel::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 20px;
+  background-color: var(--ha-red);
+  transform: rotate(-45deg);
+  border: 2px solid var(--ha-black);
 }
 
-.post a {
-    color: var(--text);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    font-weight: 600;
+/* --- 5. Hero Profiles (About Page) --- */
+.hero-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.post a:hover {
-    background-color: var(--text);
-    color: var(--bg);
-    text-decoration: none;
+.hero-profile h1 {
+  font-family: var(--font-action);
+  font-size: 4rem;
+  color: var(--ha-red);
+  text-shadow: 3px 3px 0px var(--ha-black), -1px -1px 0 var(--ha-black), 1px -1px 0 var(--ha-black), -1px 1px 0 var(--ha-black), 1px 1px 0 var(--ha-black);
+  letter-spacing: 2px;
+  transform: rotate(-3deg);
+  margin-bottom: 20px;
 }
 
-/* Forms */
-.comment-form {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    border: 2px solid var(--border);
-    padding: 1.5rem;
+.hero-image-frame {
+  border: var(--thick-border);
+  box-shadow: var(--hard-shadow);
+  background-color: var(--ha-blue);
+  padding: 10px;
+  margin-bottom: 30px;
+  transform: rotate(2deg);
 }
 
-.comment-form textarea {
-    width: 100%;
-    height: 120px;
-    padding: 0.75rem;
-    font-family: var(--font);
-    font-size: 1rem;
-    border: 2px solid var(--border);
-    margin-bottom: 1rem;
-    resize: vertical;
-    background-color: #fafafa;
+.hero-image-frame img {
+  border: 3px solid var(--ha-black);
+  display: block;
 }
 
-.comment-form textarea:focus {
-    outline: none;
-    background-color: #ffffff;
-    box-shadow: 4px 4px 0px var(--border);
+.hero-profile p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  background-color: var(--ha-yellow);
+  padding: 15px;
+  border: 3px solid var(--ha-black);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+  margin-bottom: 15px;
+  text-align: left;
 }
 
-button[type="submit"] {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: var(--text);
-    color: var(--bg);
-    border: 2px solid var(--border);
-    cursor: pointer;
-    font-family: var(--font);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.2s ease;
+/* --- 6. Post List & Action Buttons --- */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-button[type="submit"]:hover {
-    background: var(--bg);
-    color: var(--text);
-    box-shadow: 4px 4px 0px var(--border);
-    transform: translate(-2px, -2px);
+.post-card h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  border-bottom: 4px solid var(--ha-black);
+  padding-bottom: 5px;
 }
 
-/* Messages */
-.messages {
-    margin-bottom: 2rem;
+.post-card img {
+  width: 100%;
+  border: 3px solid var(--ha-black);
+  margin-bottom: 15px;
 }
 
-.message {
-    padding: 1rem;
-    border: 2px solid var(--border);
-    margin-bottom: 1rem;
-    font-weight: 600;
+.btn-action {
+  display: inline-block;
+  font-family: var(--font-hero);
+  background-color: var(--ha-green);
+  color: var(--ha-black) !important;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: 4px solid var(--ha-black);
+  box-shadow: 4px 4px 0px var(--ha-black);
+  text-transform: uppercase;
+  transform: skewX(-10deg);
 }
 
-.message.success {
-    background-color: #d4ffbc;
-    border-color: #1f5f00;
-    color: #1f5f00;
+.btn-action:hover {
+  background-color: var(--ha-red);
+  color: var(--ha-white) !important;
+  transform: skewX(-10deg) translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--ha-black);
 }
 
-.message.error {
-    background-color: #ffcccc;
-    border-color: #990000;
-    color: #990000;
+/* --- 7. Footer --- */
+.ha-footer {
+  background-color: var(--ha-black);
+  color: var(--ha-white);
+  text-align: center;
+  padding: 20px;
+  font-family: var(--font-hero);
+  border-top: 6px solid var(--ha-yellow);
+  margin-top: auto;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 3rem 2rem;
-    margin-top: 5rem;
-    border-top: 2px solid var(--border);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+/* --- 8. Hand-drawn Annotations --- */
+.annotation {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--ha-black);
+  position: absolute;
+  transform: rotate(-10deg);
+  z-index: 20;
+  pointer-events: none; /* Let clicks pass through to whatever is underneath */
+}
+/* Arrow using a CSS pseudo-element for extra hand-drawn feel */
+.annotation-arrow::after {
+  content: ' ⤵'; /* A nice curvy arrow symbol */
+  font-size: 2.5rem;
+  display: block;
+  transform: rotate(30deg) translate(20px, -10px);
 }

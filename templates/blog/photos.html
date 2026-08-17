@@ -1,46 +1,64 @@
 {% extends 'blog/base.html' %}
+{% block title %}HRSH{% endblock %}
 
 {% block content %}
 <style>
     /* Override the main container just for this page so it's not restricted to 720px */
-    main.container {
+    main.ha-container {
         max-width: 1200px !important;
     }
 
     .photo-gallery {
         column-count: 3;
-        column-gap: 15px;
+        column-gap: 30px;
     }
 
     .photo {
         break-inside: avoid;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        overflow: hidden;
+        margin-bottom: 30px;
+        background-color: var(--ha-white);
+        padding: 15px;
+        border: var(--thick-border);
+        box-shadow: var(--hard-shadow);
+        transform: rotate(-1deg);
+        transition: all 0.2s ease;
+    }
+    
+    /* Make some photos rotate the other way for a messy intel board look */
+    .photo:nth-child(even) {
+        transform: rotate(2deg);
+        background-color: var(--ha-yellow);
     }
 
     .photo img {
         width: 100%;
         height: auto;
-        /* This explicitly forces the image to keep its natural shape */
         display: block;
-        transition: transform 0.3s ease;
+        border: 3px solid var(--ha-black);
     }
 
-    .photo:hover img {
-        transform: scale(1.05);
-        /* Gentle Pinterest-style zoom */
+    .photo:hover {
+        transform: scale(1.05) rotate(0deg);
+        box-shadow: var(--hard-shadow-hover);
+        z-index: 10;
+        position: relative;
     }
 </style>
 
-<h1>Photos</h1>
+<div style="position: relative;">
+    <h1 style="text-align: center; margin-bottom: 40px; font-size: 3rem; color: var(--ha-blue); text-shadow: 2px 2px 0 var(--ha-black);">Photos</h1>
+    <span class="annotation annotation-arrow" style="top: -20px; right: 25%; transform: rotate(15deg); color: var(--ha-red);">Look closely!</span>
+</div>
+
 <div class="photo-gallery">
     {% for photo in photos %}
     <div class="photo">
         <img src="{{photo.image.url}}" alt="{{photo.caption}}">
     </div>
     {% empty %}
-    <h2>No photos found</h2>
+    <div class="manga-panel">
+        <h2>No photos found.</h2>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
